@@ -31,7 +31,11 @@ public class MappingStreams {
      */
     public IntStream doubleValuesInStream(IntStream numbers) {
         // hint: use the map() method to double the values in the stream.
-        return null; // TODO
+
+        // LAMBDA LAUSEKE TARKOITTAA ETTÄ TEHDÄÄN ANONYYMI METODI,
+        // JOKA SAA 0-N PARAMETRIÄ JA METODI SUORITETAAN HETI
+
+        return numbers.map((numero) -> numero * 2); // TODO
     }
 
     /**
@@ -44,7 +48,7 @@ public class MappingStreams {
      */
     public IntStream multiplyValuesInStream(IntStream numbers, int multiplier) {
         // hint: use the map() method to multiply the values in the stream.
-        return null; // TODO
+        return numbers.map((n) -> n * multiplier); // TODO
     }
 
     /**
@@ -58,7 +62,7 @@ public class MappingStreams {
          * hint: First, use the stream() method to create a Stream<Integer>.
          * Then, use mapToInt() method to convert that to an IntStream.
          */
-        return null; // TODO
+        return numbers.stream().mapToInt(Integer::intValue); // TODO
     }
 
     /**
@@ -76,7 +80,7 @@ public class MappingStreams {
      */
     public Stream<String> prefixAllStrings(Stream<String> strings, String prefix) {
         // hint: once again, use the map() method to add the prefix
-        return null; // TODO
+        return strings.map(null); // TODO
     }
 
     /**

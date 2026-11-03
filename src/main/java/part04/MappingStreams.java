@@ -1,6 +1,8 @@
 package part04;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -80,7 +82,7 @@ public class MappingStreams {
      */
     public Stream<String> prefixAllStrings(Stream<String> strings, String prefix) {
         // hint: once again, use the map() method to add the prefix
-        return strings.map(null); // TODO
+        return strings.map(s -> prefix + s); // TODO
     }
 
     /**
@@ -96,7 +98,7 @@ public class MappingStreams {
      * @return a stream of strings with the suffix added
      */
     public Stream<String> suffixAllStrings(Stream<String> strings, String suffix) {
-        return null; // TODO
+        return strings.map(s -> s + suffix); // TODO
     }
 
     /**
@@ -113,11 +115,18 @@ public class MappingStreams {
      * @return a stream of strings with the suffix removed
      */
     public Stream<String> removeSuffix(Stream<String> strings, String suffix) {
-        /*
-         * hint: If your expression is too complex, you can define a separate method
-         * that you call from the lambda expression.
-         */
-        return null; // TODO
+
+        Function<String, String> removeSuffixFunc = string -> {
+
+            if (!string.endsWith(suffix)) {
+
+                return string;
+            }
+
+            return string.substring(0, string.length() - suffix.length());
+
+        };
+        return strings.map(removeSuffixFunc); // TODO
     }
 
     /**
@@ -131,16 +140,16 @@ public class MappingStreams {
      * @param numbers the stream of numbers to convert
      * @return a stream of strings
      */
-    public Stream<String> streamFizzBuzz(IntStream numbers) {
-        /*
-         * The FizzBuzz pattern is as follows:
-         * - if the number is divisible by both 3 and 5, the string is "FizzBuzz"
-         * - if the number is divisible by 3, the string is "Fizz"
-         * - if the number is divisible by 5, the string is "Buzz"
-         * - otherwise, the string is the number as a string
-         */
 
-        // hint: see the mapToObj() method in IntStream
-        return null; // TODO
+    public Stream<String> streamFizzBuzz(IntStream numbers) {
+        return numbers.mapToObj(n -> {
+            if (n % 15 == 0)
+                return "FizzBuzz";
+            if (n % 3 == 0)
+                return "Fizz";
+            if (n % 5 == 0)
+                return "Buzz";
+            return String.valueOf(n);
+        });
     }
 }
